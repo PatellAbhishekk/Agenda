@@ -1,6 +1,7 @@
 import "./style.css";
 import { formEl, inputEl, yearEl } from "./domSelection";
 
+//
 const tasks = [];
 
 formEl.addEventListener("submit", (e) => {
@@ -10,7 +11,7 @@ formEl.addEventListener("submit", (e) => {
   if (!inputEl.value) {
     return;
   }
-
+  //  Add the task to the array
   tasks.push({
     title: inputEl.value,
     isCompleted: false,
@@ -23,7 +24,7 @@ formEl.addEventListener("submit", (e) => {
   inputEl.value = "";
 });
 
-// IIFE
+// IIFE - Immediately Invoked Function Expression
 (function () {
   const year = new Date().getFullYear();
 
