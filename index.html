@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Agenda &mdash; Organize your life</title>
     <link rel="shortcut icon" href="task.png" type="image/x-icon" />
+    <!-- fonts -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/hk-grotesk.min.css"
+    />
   </head>
   <body data-theme="aqua" class="bg-gradient-to-r from-cyan-400 to-rose-500">
     <!-- Header -->
@@ -63,8 +68,10 @@
               autocomplete="off"
             />
           </form>
-          <!-- TAsk : go here -->
-          <div class="form-control grid gap-1" data-task-list></div>
+          <!-- Task : go here -->
+          <div class="form-control grid gap-1" data-task-list>
+            <label for=""></label>
+          </div>
         </div>
       </div>
     </main>

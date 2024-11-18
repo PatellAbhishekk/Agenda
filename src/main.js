@@ -9,7 +9,7 @@ function renderTasks() {
   listEl.innerHTML = "";
   const fragment = document.createDocumentFragment();
   tasks.forEach((task) => {
-    const taskEl = Task(task.value, task.isCompletedj);
+    const taskEl = Task(task.value, task.isCompleted, task.id);
     fragment.appendChild(taskEl);
   });
   listEl.appendChild(fragment);
@@ -26,7 +26,7 @@ formEl.addEventListener("submit", (e) => {
   //  Add the task to the array
   tasks.unshift({
     id: crypto.randomUUID(),
-    isCompleted: true,
+    isCompleted: false,
     value: inputEl.value,
   });
 
@@ -37,6 +37,14 @@ formEl.addEventListener("submit", (e) => {
 
   //  Empty the input field
   inputEl.value = "";
+});
+
+listEl.addEventListener("click", (e) => {
+  if (e.target.tagName === "INPUT") {
+    // closest method returns the closest parent element
+    console.log(e.target.closest("label").id);
+    console.log("hello");
+  }
 });
 
 // IIFE - Immediately Invoked Function Expression

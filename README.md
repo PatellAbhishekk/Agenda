@@ -29,3 +29,19 @@ module.exports = {
   plugins: [require("daisyui")],
 };
 ```
+
+#Events
+
+`Bubbling`: Event target element se upar parent elements tak propagate hota hai.
+
+`Capturing`: Event root se start ho kar target element tak reach karta hai.
+
+`Delegation`: Parent element pe ek listener laga ke, child element ke events handle karte ho using bubbling.
+
+`stopPropagation()`: event ko bubble ya capture hone se rokta hai.
+// Child element pe event listener
+
+document.getElementById('child').addEventListener('click', function(event) {
+console.log('Child clicked');
+event.stopPropagation(); // Event propagation stop
+});

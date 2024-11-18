@@ -3,6 +3,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js}"],
   theme: {
     extend: {},
+    fontFamily: {
+      sans: ["'HK Grotesk', sans-serif"],
+    },
   },
   plugins: [require("daisyui")],
   daisyui: {
