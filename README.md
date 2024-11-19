@@ -41,7 +41,9 @@ module.exports = {
 `stopPropagation()`: event ko bubble ya capture hone se rokta hai.
 // Child element pe event listener
 
-document.getElementById('child').addEventListener('click', function(event) {
-console.log('Child clicked');
-event.stopPropagation(); // Event propagation stop
+```js
+document.getElementById("child").addEventListener("click", function (event) {
+  console.log("Child clicked");
+  event.stopPropagation(); // Event propagation stop
 });
+```
