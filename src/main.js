@@ -1,9 +1,15 @@
+import localforage from "localforage";
 import "./style.css";
 import { formEl, inputEl, listEl, yearEl } from "./domSelection";
 import Task from "./component/Task"; // Import the task component
 
 // store the tasks in an array
 let tasks = [];
+
+(async () => {
+  const tasks = await localforage.getItem("device");
+  console.log(value);
+})();
 
 // this function will be called when the user clicks on the task
 function toggleTask(id) {
