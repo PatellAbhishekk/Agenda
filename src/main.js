@@ -3,31 +3,35 @@ import "./style.css";
 import { formEl, inputEl, listEl, yearEl } from "./domSelection";
 import Task from "./component/Task"; // Import the task component
 
-// store the tasks in an array
-let tasks = [];
+// store the state in an array
+// state is dependencies
+let state = [];
 
-(async () => {
-  const tasks = await localforage.getItem("device");
-  console.log(value);
-})();
+localforage.getItem("tasks").then((tasks) => {
+  if (tasks) {
+    state = tasks;
+  }
+  renderTask();
+});
 
 // this function will be called when the user clicks on the task
 function toggleTask(id) {
-  tasks = tasks.map((task) => {
+  state = state.map((task) => {
     if (task.id === id) {
       // (...spread operator) is used to create a new object
       return { ...task, isCompleted: !task.isCompleted };
     }
     return task;
   });
-  // show the incompleted tasks first
-  tasks.sort((a, b) => a.isCompleted - b.isCompleted);
+  // show the incompleted state first
+  state.sort((a, b) => a.isCompleted - b.isCompleted);
+  localforage.setItem("tasks", state);
 }
 
-function renderTasks() {
+function renderTask() {
   listEl.innerHTML = "";
   const fragment = document.createDocumentFragment();
-  tasks.forEach((task) => {
+  state.forEach((task) => {
     const taskEl = Task(task.value, task.isCompleted, task.id);
     fragment.appendChild(taskEl);
   });
@@ -43,16 +47,17 @@ formEl.addEventListener("submit", (e) => {
     return;
   }
   //  Add the task to the array
-  tasks.unshift({
+  state.unshift({
     id: crypto.randomUUID(),
     isCompleted: false,
     value: inputEl.value,
   });
 
-  console.log(tasks);
+  console.log(state);
+  localforage.setItem("tasks", state);
 
-  //  Render the tasks
-  renderTasks();
+  //  Render the state
+  renderTask();
 
   //  Empty the input field
   inputEl.value = "";
@@ -62,10 +67,10 @@ listEl.addEventListener("click", (e) => {
   if (e.target.tagName === "INPUT") {
     // closest method returns the closest parent element
     console.log(e.target.closest("label").id);
-    console.log(tasks);
+    console.log(state);
     toggleTask(e.target.closest("label").id);
-    console.log(tasks);
-    renderTasks();
+    console.log(state);
+    renderTask();
   }
 });
 
