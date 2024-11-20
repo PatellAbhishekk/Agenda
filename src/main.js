@@ -63,6 +63,7 @@ formEl.addEventListener("submit", (e) => {
   inputEl.value = "";
 });
 
+// event delegation
 listEl.addEventListener("click", (e) => {
   if (e.target.tagName === "INPUT") {
     // closest method returns the closest parent element

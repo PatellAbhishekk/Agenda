@@ -1,5 +1,7 @@
 # Lineup
 
+![mockup](mockup.png)
+
 ## Tailwind Setup
 
 1. Scaffold a new vite vanilla project `pnpm init vite@latest .` command
