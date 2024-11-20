@@ -32,7 +32,7 @@ module.exports = {
 };
 ```
 
-#Events
+# Events
 
 `Bubbling`: Event target element se upar parent elements tak propagate hota hai.
 
