@@ -38,28 +38,50 @@ function renderTask() {
   listEl.appendChild(fragment);
 }
 
+// Function to clear all tasks
+function clearAllTasks() {
+  // Clear the state (set it to an empty array)
+  state = [];
+
+  // Remove tasks from local storage
+  localforage.setItem("tasks", state);
+
+  // Re-render the task list (which will now be empty)
+  renderTask();
+}
+
 // Prevent the page from reloading
 formEl.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  //  Checking for empty input
-  if (!inputEl.value) {
-    return;
+  //  Checking for empty input and trimming the input
+  const inputValue = inputEl.value.trim().toLowerCase();
+
+  // If the input is "clear all", clear all tasks
+  if (inputValue === "clear all") {
+    clearAllTasks();
+  } else if (inputValue) {
+    const capitalizedValue = inputEl.value
+      .toLowerCase() // Make the input lowercase first
+      .split(" ") // Split into words
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize each word
+      .join(" "); // Join words back together
+
+    // If the input is not empty and not "clear all", add the task
+    state.unshift({
+      id: crypto.randomUUID(),
+      isCompleted: false,
+      value: capitalizedValue,
+    });
+
+    // Save the tasks to localforage
+    localforage.setItem("tasks", state);
+
+    // Render the tasks
+    renderTask();
   }
-  //  Add the task to the array
-  state.unshift({
-    id: crypto.randomUUID(),
-    isCompleted: false,
-    value: inputEl.value,
-  });
 
-  console.log(state);
-  localforage.setItem("tasks", state);
-
-  //  Render the state
-  renderTask();
-
-  //  Empty the input field
+  // Clear the input field after submission
   inputEl.value = "";
 });
 
