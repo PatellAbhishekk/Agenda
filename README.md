@@ -49,3 +49,7 @@ document.getElementById("child").addEventListener("click", function (event) {
   event.stopPropagation(); // Event propagation stop
 });
 ```
+
+# Liscense
+
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://raw.githubusercontent.com/PatellAbhishekk/Agenda/refs/heads/main/LICENSE)
